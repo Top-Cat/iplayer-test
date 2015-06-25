@@ -31,8 +31,8 @@ class BBC_Api {
 	 * @param integer	$page		The page parameter for the API
 	 */
 	function __construct($letter, $page) {
-		$this->letter = $letter;
-		$this->page = $page;
+		$this->letter = urlencode($letter);
+		$this->page = urlencode($page);
 
 		$this->url = self::API_BASE. $letter . '/programmes?page=' . $page;
 	}
@@ -71,7 +71,7 @@ class BBC_Api {
 	 * @return integer	The count
 	 */
 	function getPageCount() {
-		return ceil($this->json->count / 20);
+		return ceil($this->json->count / $this->json->per_page);
 	}
 
 }

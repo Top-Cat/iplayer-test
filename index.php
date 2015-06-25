@@ -24,8 +24,34 @@ $bbc->doCall();
 	</head>
 	<body>
 		<div id="nav">
-			<ul><?php foreach(range(1, $bbc->getPageCount()) as $i) { ?><li<?php if ($i == $page) { ?> class="sel"<?php } ?>><a href="http://thomasc.co.uk/bbc/?l=<?=$letter; ?>&p=<?=$i;?>"><?=$i;?></a></li><?php } ?></ul><br />
-			<ul><li><a href="http://thomasc.co.uk/bbc/?l=0-9">0-9</a></li><?php foreach(range('a','z') as $i) { ?><li<?php if ($i == $letter) { ?> class="sel"<?php } ?>><a href="http://thomasc.co.uk/bbc/?l=<?=$i;?>"><?=$i;?></a></li><?php } ?></ul>
+			<ul>
+<?php
+
+// Print navigation buttons to pages for the current letter
+
+foreach(range(1, $bbc->getPageCount()) as $i) {
+	?><li<?php if ($i == $page) { ?> class="sel"<?php } ?>>
+		<a href="http://thomasc.co.uk/bbc/?l=<?=$letter; ?>&p=<?=$i;?>"><?=$i;?></a>
+	</li><?php
+}
+
+?>
+			</ul><br />
+			<ul>
+				<li><a href="http://thomasc.co.uk/bbc/?l=0-9">0-9</a></li>
+<?php
+
+// Print navigation buttons to all possible letters
+// The special case 0-9 is added above
+
+foreach(range('a','z') as $i) {
+	?><li<?php if ($i == $letter) { ?> class="sel"<?php } ?>>
+		<a href="http://thomasc.co.uk/bbc/?l=<?=$i;?>"><?=$i;?></a>
+	</li><?php
+}
+
+?>
+			</ul>
 		</div>
 		<ul id="programmes"><?php
 
