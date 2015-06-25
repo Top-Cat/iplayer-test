@@ -1,9 +1,6 @@
 <?php
 /**
  * A programme viewable on iPlayer
- *
- * @author Thomas Cheyney <thomas@thomasc.co.uk>
- * @version 20150625
  */
 class BBC_Programme {
 

@@ -1,9 +1,6 @@
 <?php
 /**
  * The HTTP API wrapper
- *
- * @author Thomas Cheyney <thomas@thomasc.co.uk>
- * @version 20150625
  */
 class BBC_Api {
 
@@ -34,12 +31,12 @@ class BBC_Api {
 		$this->letter = urlencode($letter);
 		$this->page = urlencode($page);
 
-		$this->url = self::API_BASE. $letter . '/programmes?page=' . $page;
+		$this->url = self::API_BASE . $letter . '/programmes?page=' . $page;
 	}
 
 	/**
 	 * Makes the API call, allows other class functions to be called
-	 * @return null Nothing
+	 * @return boolean True if the call was successful
 	 */
 	function doCall() {
 		$ch = curl_init();
@@ -74,7 +71,7 @@ class BBC_Api {
 	 * @return integer	The count
 	 */
 	function getPageCount() {
-		return (int) ceil(max($this->json->count / $this->json->per_page, 1));
+		return (int) max(ceil($this->json->count / $this->json->per_page), 1);
 	}
 
 }
