@@ -13,6 +13,7 @@ class Test_Programme extends Test_Test {
 		$prog = new BBC_Programme($json);
 
 		self::assertEquals($prog->getTitle(), "100 Lle");
+		self::assertEquals($prog->getImageUrl(), "http://ichef.bbci.co.uk/images/ic/240x135/p02vbkpm.jpg");
 	}
 
 }
