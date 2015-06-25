@@ -45,7 +45,7 @@ foreach(range('a','z') as $i) {
 
 foreach(range(1, $bbc->getPageCount()) as $i) {
 	?><li<?php if ($i == $page) { ?> class="sel"<?php } ?>>
-		<a href="http://thomasc.co.uk/bbc/?l=<?=$letter; ?>&p=<?=$i;?>"><?=$i;?></a>
+		<a href="http://thomasc.co.uk/bbc/?l=<?=htmlspecialchars($letter); ?>&p=<?=$i;?>"><?=$i;?></a>
 	</li><?php
 }
 
