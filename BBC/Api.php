@@ -12,11 +12,9 @@ class BBC_Api {
 	/** @var integer The page parameter for the API */
 	private $page;
 
-	/** @var string The constructed URL used when calling the API */
-	private $url;
 	/** @var object The response from the API */
 	private $json;
-
+	/** @var boolean True if we got a valid response from the API */
 	private $success;
 
 	/** @var BBC_Programme[] List of programmes in this response */
@@ -33,10 +31,10 @@ class BBC_Api {
 		$this->letter = urlencode($letter);
 		$this->page = urlencode($page);
 
-		$this->url = self::API_BASE . $letter . '/programmes?page=' . $page;
+		$url = self::API_BASE . $letter . '/programmes?page=' . $page;
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->url);
+		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = json_decode(curl_exec($ch));
 		curl_close($ch);
@@ -48,6 +46,10 @@ class BBC_Api {
 		}
 	}
 
+	/**
+	 * Checks if this API call was successful
+	 * @return boolean True if we got a valid response from the API
+	 */
 	function getSuccess() {
 		return $this->success;
 	}
