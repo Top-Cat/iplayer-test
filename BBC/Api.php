@@ -18,7 +18,6 @@ class BBC_Api {
 		$this->page = $page;
 
 		$this->url = self::API_BASE.'/ibl/v1/atoz/' . $letter . '/programmes?page=' . $page;
-		$this->doCall();
 	}
 
 	function doCall() {

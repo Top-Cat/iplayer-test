@@ -1,0 +1,40 @@
+ul {
+	list-style-type: none;
+}
+li {
+	display: inline-block;
+}
+ul#programmes {
+	padding: 0;
+	width: 1000px;
+	margin: auto;
+}
+ul#programmes li {
+	width: 240px;
+	vertical-align: top;
+	padding: 5px;
+}
+ul#programmes img {
+	display: block;
+	width: 240px;
+	height: 135px;
+}
+#nav {
+	text-align: center;
+}
+#nav ul {
+	margin: 20px auto;
+	padding: 0;
+	display: inline-block;
+}
+#nav ul a {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #000;
+	margin: 5px;
+	padding: 5px;
+	font-size: 18px;
+}
+.sel {
+	font-weight: bold;
+}
