@@ -45,10 +45,13 @@ class BBC_Api {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$result = curl_exec($ch);
+		$result = json_decode(curl_exec($ch));
 		curl_close($ch);
 
-		$this->json = json_decode($result)->atoz_programmes;
+		if (isset($result) && !isset($result->error)) {
+			$this->json = $result->atoz_programmes;
+		}
+		return isset($result) && !isset($result->error);
 	}
 
 	/**
@@ -71,7 +74,7 @@ class BBC_Api {
 	 * @return integer	The count
 	 */
 	function getPageCount() {
-		return ceil($this->json->count / $this->json->per_page);
+		return (int) ceil(max($this->json->count / $this->json->per_page, 1));
 	}
 
 }
