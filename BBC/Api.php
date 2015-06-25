@@ -17,12 +17,14 @@ class BBC_Api {
 	/** @var object The response from the API */
 	private $json;
 
+	private $success;
+
 	/** @var BBC_Programme[] List of programmes in this response */
 	private $programmes;
 
 	/**
 	 * BBC_Api Constructor
-	 * Constructs the URL that will be called later
+	 * Constructs a URL and calls the API
 	 * 
 	 * @param string	$letter	The letter parameter for the API
 	 * @param integer	$page		The page parameter for the API
@@ -32,23 +34,22 @@ class BBC_Api {
 		$this->page = urlencode($page);
 
 		$this->url = self::API_BASE . $letter . '/programmes?page=' . $page;
-	}
 
-	/**
-	 * Makes the API call, allows other class functions to be called
-	 * @return boolean True if the call was successful
-	 */
-	function doCall() {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = json_decode(curl_exec($ch));
 		curl_close($ch);
 
-		if (isset($result) && !isset($result->error)) {
+		$this->success = isset($result) && !isset($result->error);
+
+		if ($this->success) {
 			$this->json = $result->atoz_programmes;
 		}
-		return isset($result) && !isset($result->error);
+	}
+
+	function getSuccess() {
+		return $this->success;
 	}
 
 	/**
