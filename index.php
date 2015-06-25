@@ -38,7 +38,7 @@ foreach(range(1, $bbc->getPageCount()) as $i) {
 ?>
 			</ul><br />
 			<ul>
-				<li><a href="http://thomasc.co.uk/bbc/?l=0-9">0-9</a></li>
+				<li<?php if ("0-9" == $letter) { ?> class="sel"<?php } ?>><a href="http://thomasc.co.uk/bbc/?l=0-9">0-9</a></li>
 <?php
 
 // Print navigation buttons to all possible letters

@@ -11,7 +11,9 @@ abstract class Test_Test {
 	public function run() {
 		print "Testing " . $this->getName() . " ... ";
 		$this->doTest();
-		print ($this->passed ? "PASSED" : "FAILED") . "<br />";
+		print ($this->passed ? "PASSED" : "FAILED") . NEWLINE;
+
+		return $this->passed;
 	}
 
 	protected function assertEquals($a, $b) {
